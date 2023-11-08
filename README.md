@@ -4,9 +4,7 @@ I like to fule my learning of computer progamming concepts through game design a
 
 In the game "Stay Alive" You are a mobile turret that is trying to protect yourself from the onslaught of alien creatures. Point and click to aim your cannon, and use w,a,s,d or the arrow keys to evade wave after wave of hungy aliens. Each time you kill an alien your score will increase. It is important that you keep your eye on the minimap in the top right corner of the screen, so that you know when to shoot and when to run. 
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the game being played and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/JVumE5USLXA)
 
 # Development Environment
 

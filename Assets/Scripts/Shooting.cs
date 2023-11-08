@@ -12,14 +12,31 @@ public class Shooting : MonoBehaviour
 
     public float bulletForce = 20f;
     // Update is called once per frame
+
+    public float firerate;
+    float nextfire; 
     void Update()
-    {
-        if(Input.GetButtonDown("Fire1"))
+    {   
+
+    if(Input.GetButtonDown("Fire1"))
         {
             Shoot();
             if (playerIsAlive)
             {
                 FindObjectOfType<AudioManager>().Play("Shoot");
+            }
+        } else if (Time.time > nextfire)
+        {   
+        nextfire=Time.time+firerate;
+
+        if (Input.GetButton("Fire1"))
+            {
+                Shoot();
+
+                if (playerIsAlive)
+                {
+                    FindObjectOfType<AudioManager>().Play("Shoot");
+                }
             }
         }
     }

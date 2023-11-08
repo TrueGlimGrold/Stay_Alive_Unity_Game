@@ -10462,8 +10462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 752, y: 333.22076}
-  m_SizeDelta: {x: 350, y: 350}
+  m_AnchoredPosition: {x: 707, y: 284}
+  m_SizeDelta: {x: 450, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961972743
 MonoBehaviour:
@@ -10630,6 +10630,14 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.0077276677
       objectReference: {fileID: 0}
+    - target: {fileID: 2336403162598093373, guid: 751c0268c1663eb45ac74454123e9e5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336403162598093373, guid: 751c0268c1663eb45ac74454123e9e5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.076
+      objectReference: {fileID: 0}
     - target: {fileID: 2851082921732760719, guid: 751c0268c1663eb45ac74454123e9e5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10677,6 +10685,10 @@ PrefabInstance:
     - target: {fileID: 5935024918383003172, guid: 751c0268c1663eb45ac74454123e9e5c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061551677717458021, guid: 751c0268c1663eb45ac74454123e9e5c, type: 3}
+      propertyPath: firerate
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

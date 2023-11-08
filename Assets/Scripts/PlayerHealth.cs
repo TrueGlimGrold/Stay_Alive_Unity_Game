@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Health") && currentHealth < maxHealth)
         {   
             Destroy(collision.gameObject);
-            currentHealth++;
+            currentHealth = maxHealth;
             currentHealth = Mathf.Clamp(currentHealth, 0, wear.Length - 1);
             ChangeSprite(currentHealth); 
             FindObjectOfType<AudioManager>().Play("Powerup");
