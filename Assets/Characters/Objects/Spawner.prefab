@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7523890619023586432}
-  spawnRate: 8
+  spawnRate: 4
   enemyPrefabs:
   - {fileID: 2298680969182079015, guid: a498fc8686eda4d48a1f1ff32cc185e7, type: 3}
   - {fileID: 2230640672700708946, guid: 54d12f3b46f78854a982ca98b9ec478e, type: 3}

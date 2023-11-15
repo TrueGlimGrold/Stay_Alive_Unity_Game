@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4236209829749908974}
   - component: {fileID: 2697995527469273645}
   - component: {fileID: -1213520676398194652}
+  - component: {fileID: 1000422306680957728}
   m_Layer: 9
   m_Name: Health Pickup
   m_TagString: Health
@@ -120,3 +121,24 @@ CircleCollider2D:
   m_Offset: {x: 0.011126351, y: -0.022688057}
   serializedVersion: 2
   m_Radius: 0.8938104
+--- !u!95 &1000422306680957728
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4010558652270136332}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 287d3425503236b428a5986a6094fb75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

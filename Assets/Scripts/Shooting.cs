@@ -15,6 +15,10 @@ public class Shooting : MonoBehaviour
 
     public float firerate;
     float nextfire; 
+
+    private float normalFireRate = 0.3f;
+    private float starPowerupFireRate = 0.001f;
+
     void Update()
     {   
 
@@ -59,5 +63,27 @@ public class Shooting : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Star powerup"))
+        {   
+            FindObjectOfType<AudioManager>().Play("SuperGun");
+            Destroy(collision.gameObject);
+            StartCoroutine(ActivateStarPowerup());
+        }
+    }
+
+    IEnumerator ActivateStarPowerup()
+    {
+        // Set the fire rate to the star powerup rate
+        firerate = starPowerupFireRate;
+
+        // Wait for 8 seconds
+        yield return new WaitForSeconds(12f);
+
+        // Reset the fire rate to the normal rate
+        firerate = normalFireRate;
     }
 }
