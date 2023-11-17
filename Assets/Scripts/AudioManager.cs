@@ -34,4 +34,18 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public float GetClipLength(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s != null && s.clip != null)
+        {
+            return s.clip.length;
+        }
+        else
+        {
+            Debug.LogWarning("Clip not found or is null.");
+            return 0f;
+        }
+    }
+
 }

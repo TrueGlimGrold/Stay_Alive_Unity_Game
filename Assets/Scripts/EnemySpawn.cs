@@ -1,38 +1,54 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
-{   
-
+{
     public Animator animator;
-
-    [SerializeField] private float spawnRate = 1f; 
-
+    private float spawnRate = 30f;
     [SerializeField] private GameObject[] enemyPrefabs;
-
     [SerializeField] private bool canSpawn = true;
     [SerializeField] private float soundRadius = 10f;
-
     private AudioSource audioSource;
 
-    private void Start() {
+    private void Start()
+    {
         audioSource = GetComponent<AudioSource>();
-
         StartCoroutine(Spawner());
     }
 
-    private IEnumerator Spawner () {
-        WaitForSeconds wait = new WaitForSeconds(spawnRate);
+    private IEnumerator Spawner()
+    {
         WaitForSeconds spawnTime = new WaitForSeconds(2f);
         WaitForSeconds after_spawn = new WaitForSeconds(0.4f);
 
+        // Initial spawn
+        float distanceToListener = Vector2.Distance(transform.position, ListenerPosition());
+        animator.SetBool("Is_Spawning", true);
+        yield return spawnTime;
+
+        if (audioSource != null && distanceToListener <= soundRadius)
+        {
+            audioSource.Play();
+        }
+
+        int rand = Random.Range(0, enemyPrefabs.Length);
+        GameObject enemyToSpawn = enemyPrefabs[rand];
+        Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+
+        yield return after_spawn;
+        animator.SetBool("Is_Spawning", false);
+
+        // Continue with regular spawning loop
         while (canSpawn)
         {
-            yield return wait;
-            int rand = Random.Range(0, enemyPrefabs.Length);
+            yield return new WaitForSeconds(spawnRate);
 
-            float distanceToListener = Vector2.Distance(transform.position, ListenerPosition());
+            // Decrease spawn rate
+            spawnRate = Mathf.Max(spawnRate * 0.90f, 0.01f);
+
+            rand = Random.Range(0, enemyPrefabs.Length);
+
+            distanceToListener = Vector2.Distance(transform.position, ListenerPosition());
 
             // Trigger the "Spawning" animation
             animator.SetBool("Is_Spawning", true);
@@ -44,11 +60,10 @@ public class EnemySpawn : MonoBehaviour
                 audioSource.Play();
             }
 
-            GameObject enemyToSpawn = enemyPrefabs[rand];
-
+            enemyToSpawn = enemyPrefabs[rand];
             Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
 
-            yield return after_spawn; 
+            yield return after_spawn;
             animator.SetBool("Is_Spawning", false);
         }
     }

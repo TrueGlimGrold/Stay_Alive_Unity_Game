@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f;
     public bool isGhost;
     // Start is called before the first frame update
+    public float maxHealth = 1f;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();

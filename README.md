@@ -22,7 +22,12 @@ To develop this code I first made art within Gimp, arranged it in Unity as game 
 * [Pizabay](https://pixabay.com/sound-effects/search/gunshot/)
 
 
-# Future Work
+# Music attributions
+
+Music by timbeek.com
+Sound effects from Pixabay
+
+# Future work
 
 Here are some concepts for games I might want to make in the future. 
 

@@ -22,18 +22,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {   
 
-    if(Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-            if (playerIsAlive)
-            {
-                FindObjectOfType<AudioManager>().Play("Shoot");
-            }
-        } else if (Time.time > nextfire)
-        {   
-        nextfire=Time.time+firerate;
-
-        if (Input.GetButton("Fire1"))
+        if ((Input.GetButtonDown("Fire1") && Time.time > nextfire) || (Time.time > nextfire && Input.GetButton("Fire1")))
             {
                 Shoot();
 
@@ -41,8 +30,9 @@ public class Shooting : MonoBehaviour
                 {
                     FindObjectOfType<AudioManager>().Play("Shoot");
                 }
+
+                nextfire = Time.time + firerate;
             }
-        }
     }
 
     void Shoot()

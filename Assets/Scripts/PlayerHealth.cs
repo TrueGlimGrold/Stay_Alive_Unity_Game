@@ -50,8 +50,6 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         currentHealth = maxHealth; // Initialize health
         ChangeSprite(currentHealth); // Set the initial sprite based on player's health
-
-        FindObjectOfType<AudioManager>().Play("Music");
     }
 
     void Update()
@@ -155,6 +153,14 @@ public class PlayerHealth : MonoBehaviour
     // Check if the player is still touching a specific enemy
     bool IsTouchingEnemy(Collider2D enemyCollider)
     {
-        return gameObject.GetComponent<Collider2D>().IsTouching(enemyCollider);
+        if (enemyCollider != null)
+        {
+            return gameObject.GetComponent<Collider2D>().IsTouching(enemyCollider);
+        }
+        else
+        {
+            // Handle the case where enemyCollider is null
+            return false;
+        }
     }
 }

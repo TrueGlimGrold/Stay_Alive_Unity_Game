@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         // Load the high score from PlayerPrefs
         highScore = PlayerPrefs.GetInt(highScoreKey, 0);
         highScoreText.text = "High Score: " + highScore.ToString();
+        FindObjectOfType<AudioManager>().Play("Music");
     }
 
     // You can set the activePlayer reference when the player is spawned or activated.
