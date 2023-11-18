@@ -103,6 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   isGhost: 0
+  maxHealth: 4
+  game: {fileID: 0}
+  animator: {fileID: 1093547059291187}
 --- !u!50 &8723886724804383886
 Rigidbody2D:
   serializedVersion: 4

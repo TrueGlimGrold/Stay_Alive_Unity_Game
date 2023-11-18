@@ -104,17 +104,26 @@ public class LevelLoader : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         } 
-        else if (selectedMap == "Map3")
+        else if (selectedMap == "Map2")
         {
             SceneManager.LoadScene(2);
         }
-        else if (selectedMap == "Map5")
+        else if (selectedMap == "Map3")
         {
             SceneManager.LoadScene(3);
         }
-
-        // Todo Still need to make maps 2,4, and 6
-
+        else if (selectedMap == "Map4")
+        {
+            SceneManager.LoadScene(4);
+        }
+        else if (selectedMap == "Map5")
+        {
+            SceneManager.LoadScene(5);
+        }
+        else if (selectedMap == "Map6")
+        {
+            SceneManager.LoadScene(6);
+        }
     }
 
 
@@ -167,13 +176,14 @@ public class LevelLoader : MonoBehaviour
             // Set the selected map based on the mapName parameter
             selectedMap = mapName;
 
-            // TODO Update value once you have made a map
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "Orange";
+            mapText.text = "Slow Death";
 
             mainMenuCanvas.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
             mapsCanvas.gameObject.SetActive(false);
+
+            mapImageDisplay.sprite = mapImages[1];
 
         }
         else if (clickedButton.name == "NavLevel3") // Customize for BtnUpgrades.
@@ -184,13 +194,13 @@ public class LevelLoader : MonoBehaviour
             selectedMap = mapName;
 
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "Laberinth";
+            mapText.text = "The Laberinth";
 
             mainMenuCanvas.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
             mapsCanvas.gameObject.SetActive(false);
 
-            mapImageDisplay.sprite = mapImages[1];
+            mapImageDisplay.sprite = mapImages[2];
         }
         else if (clickedButton.name == "NavLevel4") // Customize for BtnUpgrades.
         {   
@@ -199,13 +209,14 @@ public class LevelLoader : MonoBehaviour
             // Set the selected map based on the mapName parameter
             selectedMap = mapName;
 
-            // TODO Update value once you have made a map
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "Yellow";
+            mapText.text = "The Factory";
 
             mainMenuCanvas.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
             mapsCanvas.gameObject.SetActive(false);
+
+            mapImageDisplay.sprite = mapImages[3];
         }
         else if (clickedButton.name == "NavLevel5") // Customize for BtnUpgrades.
         {   
@@ -215,13 +226,13 @@ public class LevelLoader : MonoBehaviour
             selectedMap = mapName;
 
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "Colloseum";
+            mapText.text = "The Colloseum";
 
             mainMenuCanvas.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
             mapsCanvas.gameObject.SetActive(false);
 
-            mapImageDisplay.sprite = mapImages[2];
+            mapImageDisplay.sprite = mapImages[4];
         }
         else if (clickedButton.name == "NavLevel6") // Customize for BtnUpgrades.
         {   
@@ -230,13 +241,14 @@ public class LevelLoader : MonoBehaviour
             // Set the selected map based on the mapName parameter
             selectedMap = mapName;
 
-            // TODO Update value once you have made a map
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "Unknown";
+            mapText.text = "Neon Hell";
 
             mainMenuCanvas.gameObject.SetActive(true);
             player.gameObject.SetActive(true);
             mapsCanvas.gameObject.SetActive(false);
+
+            mapImageDisplay.sprite = mapImages[5];
         }
         // Add more conditions for other buttons as needed.
     }

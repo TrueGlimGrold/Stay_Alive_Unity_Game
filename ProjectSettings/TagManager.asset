@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - Health
   - Star powerup
+  - Bullet
   layers:
   - Default
   - TransparentFX

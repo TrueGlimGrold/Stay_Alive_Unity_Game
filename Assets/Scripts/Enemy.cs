@@ -12,6 +12,12 @@ public class Enemy : MonoBehaviour
     public bool isGhost;
     // Start is called before the first frame update
     public float maxHealth = 1f;
+    private float currentHealth;
+
+    public GameManager game;
+
+    public Animator animator;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -30,6 +36,9 @@ public class Enemy : MonoBehaviour
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Ghost"), LayerMask.NameToLayer("Enemies"));
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Ghost"), LayerMask.NameToLayer("Walls"));
         }
+
+        game = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -40,6 +49,8 @@ public class Enemy : MonoBehaviour
         rb.rotation = angle;
         direction.Normalize();
         movement = direction;
+
+        animator.SetFloat("CurrentHealth", currentHealth);
     }
 
     private void FixedUpdate() {
@@ -48,5 +59,21 @@ public class Enemy : MonoBehaviour
 
     void moveCharacter(Vector2 direction){
         rb.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {   
+        // Check if the collision is with an object tagged as "Enemy"
+        if (collision.gameObject.CompareTag("Bullet") && currentHealth <= 1f)
+        {
+            Destroy(collision.gameObject); 
+            Destroy(gameObject);
+            game.addScore(300); 
+            FindObjectOfType<AudioManager>().Play("RobotDeath");
+        } else if (collision.gameObject.CompareTag("Bullet") && currentHealth > 1f)
+        {
+            currentHealth -= 1;
+            FindObjectOfType<AudioManager>().Play("GiantHit");
+        }
     }
 }
