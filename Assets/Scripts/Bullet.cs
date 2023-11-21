@@ -10,6 +10,9 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Player"))
         {   
             Destroy(gameObject);
+
+            // ! Test code 
+            // gameObject.SetActive(false);
         }
     }
 

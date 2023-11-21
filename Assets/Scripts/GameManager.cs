@@ -20,12 +20,31 @@ public class GameManager : MonoBehaviour
     // The PlayerPrefs key for the high score
     private string highScoreKey = "HighScore";
 
+    public EnemySpawn enemySpawn;
+    
+
     private void Start()
-    {
+    {   
+        // Set the game to fullscreen
+        Screen.fullScreen = true;
+        
+        // Set the resolution to fit the screen
+        int screenWidth = Screen.currentResolution.width;
+        int screenHeight = Screen.currentResolution.height;
+        Screen.SetResolution(screenWidth, screenHeight, Screen.fullScreen);
+
         // Load the high score from PlayerPrefs
-        highScore = PlayerPrefs.GetInt(highScoreKey, 0);
+        highScore = PlayerPrefs.GetInt(highScoreKey + SceneManager.GetActiveScene().buildIndex, 0);
         highScoreText.text = "High Score: " + highScore.ToString();
+
+        // Load the score for the current scene from PlayerPrefs
+        playerScore = 0;
+        scoreText.text = "Score: " + playerScore.ToString();
+
         FindObjectOfType<AudioManager>().Play("Music");
+
+        // Find the EnemySpawn script in the scene and assign it to the variable
+        enemySpawn = FindObjectOfType<EnemySpawn>();
     }
 
     // You can set the activePlayer reference when the player is spawned or activated.
@@ -45,13 +64,22 @@ public class GameManager : MonoBehaviour
             highScoreText.text = "High Score: " + highScore.ToString();
 
             // Save the updated high score to PlayerPrefs
-            PlayerPrefs.SetInt(highScoreKey, highScore);
+            PlayerPrefs.SetInt(highScoreKey + SceneManager.GetActiveScene().buildIndex, highScore);
             PlayerPrefs.Save();
         }
+
+        // Save the updated score for the current scene to PlayerPrefs
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("Scene" + currentSceneIndex + "Score", playerScore);
+        PlayerPrefs.Save();
     }
 
     public void resetGame()
-    {
+    {   
+        // Reset player score and update UI
+        playerScore = 0;
+        scoreText.text = "Score: " + playerScore.ToString();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         PlayerHealth playerHealth = activePlayer.GetComponent<PlayerHealth>();
         playerHealth.SetPlayerIsAlive(true);
@@ -59,7 +87,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void GameOver() {
+        if (enemySpawn != null)
+        {
+            enemySpawn.StopSpawning();
+        }
+        
         gameOverScreen.SetActive(true);
         FindObjectOfType<AudioManager>().Stop("Music");
+    }
+
+    public void returnToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

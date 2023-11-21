@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MapGraveyard.unity
     guid: 3075531570da2684c905c7e35e343fc3
   - enabled: 1
+    path: Assets/Scenes/MapSlowDeath.unity
+    guid: 39a2be8ed636d7f4598bff5415080d41
+  - enabled: 1
     path: Assets/Scenes/MapLaberinth.unity
     guid: 9c2baa35d1c24c244a8e702bb26c7009
   - enabled: 1
+    path: Assets/Scenes/MapFactory.unity
+    guid: 05bc61c81d8479a4fa0a74cb1c20979c
+  - enabled: 1
     path: Assets/Scenes/MapColloseum.unity
     guid: 0cadb981a19d93549bef8b8a9eacd00a
+  - enabled: 1
+    path: Assets/Scenes/MapNeonHell.unity
+    guid: ee8ace1581940624991c3b674ea018ce
   m_configObjects: {}

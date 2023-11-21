@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject activePlayer;
 
     public bool playerIsAlive;
-    public float moveSpeed = 5f;
+    private float moveSpeed = 5f;
+
+    private int speedLevel; 
 
     public Rigidbody2D rb;
 
@@ -15,6 +17,12 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 movement; 
     Vector2 mousePos;
+
+    void Start()
+    {
+        speedLevel = PlayerPrefs.GetInt("speed");
+        moveSpeed = 2.5f + (speedLevel * 0.57f); 
+    }
 
     // Update is called once per frame
     void Update()

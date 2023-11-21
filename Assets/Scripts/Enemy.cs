@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public bool isGhost;
     // Start is called before the first frame update
     public float maxHealth = 1f;
-    private float currentHealth;
+    private float currentHealth = 1f;
 
     public GameManager game;
 
@@ -65,7 +65,8 @@ public class Enemy : MonoBehaviour
     {   
         // Check if the collision is with an object tagged as "Enemy"
         if (collision.gameObject.CompareTag("Bullet") && currentHealth <= 1f)
-        {
+        {   
+            // collision.gameObject.SetActive(false);
             Destroy(collision.gameObject); 
             Destroy(gameObject);
             game.addScore(300); 

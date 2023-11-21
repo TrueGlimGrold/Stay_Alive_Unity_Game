@@ -13,13 +13,23 @@ public class Shooting : MonoBehaviour
     public float bulletForce = 20f;
     // Update is called once per frame
 
-    public float firerate;
+    private float firerate;
     float nextfire; 
 
-    private float normalFireRate = 0.3f;
-    private float starPowerupFireRate = 0.001f;
+    private float normalFireRate;
+    private float starPowerupFireRate;
 
-    void Update()
+    private int fireRateLevel;
+
+    void Start()
+    {
+        starPowerupFireRate = normalFireRate / 5;
+        fireRateLevel = PlayerPrefs.GetInt("fireRate");
+        normalFireRate = 0.7f - (fireRateLevel * 0.057f); 
+        firerate = normalFireRate;
+    }
+
+    void FixedUpdate()
     {   
 
         if ((Input.GetButtonDown("Fire1") && Time.time > nextfire) || (Time.time > nextfire && Input.GetButton("Fire1")))
@@ -48,6 +58,25 @@ public class Shooting : MonoBehaviour
             // Calculate the rotation based on the direction
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // ! Test code
+            // GameObject bullet = ObjectPool.instance.GetPooledObject();
+
+            // if (bullet != null)
+            //     {
+            //         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+            //         // Reset velocity before applying force
+            //         rb.velocity = Vector2.zero;
+
+            //         // Apply force in the calculated direction
+            //         rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
+            //         bullet.transform.rotation = bulletRotation; // Set rotation
+
+            //         bullet.SetActive(true);
+            //     }
+
+            // ! End of test code
 
             GameObject bullet = Instantiate(bulletPreFab, firepoint.position, bulletRotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

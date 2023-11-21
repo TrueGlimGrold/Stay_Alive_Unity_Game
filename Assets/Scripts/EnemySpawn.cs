@@ -4,15 +4,19 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     public Animator animator;
-    private float spawnRate = 30f;
+    private float spawnRate = 15f;
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private bool canSpawn = true;
+
+    [HideInInspector]
+    public bool canSpawn;
     [SerializeField] private float soundRadius = 10f;
     private AudioSource audioSource;
 
     private void Start()
-    {
+    {   
+        Debug.Log("Can the spawners spawn? 3" + canSpawn);
         audioSource = GetComponent<AudioSource>();
+        canSpawn = true;
         StartCoroutine(Spawner());
     }
 
@@ -20,6 +24,8 @@ public class EnemySpawn : MonoBehaviour
     {
         WaitForSeconds spawnTime = new WaitForSeconds(2f);
         WaitForSeconds after_spawn = new WaitForSeconds(0.4f);
+
+        Debug.Log("Starting Spawner");
 
         // Initial spawn
         float distanceToListener = Vector2.Distance(transform.position, ListenerPosition());
@@ -38,9 +44,12 @@ public class EnemySpawn : MonoBehaviour
         yield return after_spawn;
         animator.SetBool("Is_Spawning", false);
 
+        Debug.Log("Can the spawners spawn? 1: " + canSpawn);
+
         // Continue with regular spawning loop
         while (canSpawn)
         {
+            Debug.Log("Can the spawners spawn? 2: " + canSpawn);
             yield return new WaitForSeconds(spawnRate);
 
             // Decrease spawn rate
@@ -66,6 +75,8 @@ public class EnemySpawn : MonoBehaviour
             yield return after_spawn;
             animator.SetBool("Is_Spawning", false);
         }
+
+        Debug.Log("Exiting Spawner");
     }
 
     private Vector2 ListenerPosition()
@@ -79,5 +90,18 @@ public class EnemySpawn : MonoBehaviour
         {
             return Vector2.zero; // Return a default position if the main camera is not found.
         }
+    }
+
+    public void StopSpawning()
+    {   
+        Debug.Log("StopSpawning called");
+        canSpawn = false;
+        StartCoroutine(DelayedStopSpawning());
+    }
+
+    private IEnumerator DelayedStopSpawning()
+    {
+        yield return null; // Wait for the next frame
+        canSpawn = false;
     }
 }
