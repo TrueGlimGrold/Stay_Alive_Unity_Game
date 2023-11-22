@@ -2848,6 +2848,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1794806126}
   playerScore: 0
   highScore: 0
+  enemySpawn: {fileID: 0}
 --- !u!4 &1426760338
 Transform:
   m_ObjectHideFlags: 0

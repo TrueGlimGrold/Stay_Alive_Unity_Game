@@ -23,9 +23,9 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
-        starPowerupFireRate = normalFireRate / 5;
         fireRateLevel = PlayerPrefs.GetInt("fireRate");
-        normalFireRate = 0.7f - (fireRateLevel * 0.057f); 
+        normalFireRate = 0.35f - (fireRateLevel * 0.01875f); 
+        starPowerupFireRate = normalFireRate / 100;
         firerate = normalFireRate;
     }
 

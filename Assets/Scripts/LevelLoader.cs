@@ -32,6 +32,9 @@ public class LevelLoader : MonoBehaviour
     [SerializeField]
     private Button btnQuit;
 
+    [SerializeField]
+    private Button btnReset;
+
     // Level Nav buttons here
 
     [SerializeField]
@@ -131,9 +134,6 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {   
-        // PlayerPrefs.DeleteAll();
-        // Debug.Log("All PlayerPrefs data has been reset.");
-
         // Set the game to fullscreen
         Screen.fullScreen = true;
 
@@ -148,7 +148,9 @@ public class LevelLoader : MonoBehaviour
 
         btnUpgrades.onClick.AddListener(() => NavigateMainMenu(btnUpgrades));
 
-        btnUpgrades.onClick.AddListener(() => NavigateMainMenu(btnQuit));
+        btnQuit.onClick.AddListener(() => NavigateMainMenu(btnQuit));
+
+        btnReset.onClick.AddListener(() => NavigateMainMenu(btnReset));
 
         // Add event listeners for level buttons as well
 
@@ -315,6 +317,15 @@ public class LevelLoader : MonoBehaviour
             
             upgradesCanvas.gameObject.SetActive(false);
         }
+
+        else if (clickedButton.name == "BtnReset")
+        {   
+            FindObjectOfType<AudioManager>().Play("Shoot");
+
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene(0);
+            Debug.Log("All PlayerPrefs data has been reset.");
+        }
     }
 
     public void NavigateLevels(Button clickedButton, string mapName)
@@ -375,7 +386,7 @@ public class LevelLoader : MonoBehaviour
             selectedMap = mapName;
 
             // we change the text mesh pro value dependant on which Navbutton was selected 
-            mapText.text = "The Laberinth";
+            mapText.text = "The Labyrinth";
             mapText.color = violet;
 
             mainMenuCanvas.gameObject.SetActive(true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,10 +19,22 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement; 
     Vector2 mousePos;
 
+    string currentSceneName;
+
     void Start()
     {
         speedLevel = PlayerPrefs.GetInt("speed");
-        moveSpeed = 2.5f + (speedLevel * 0.57f); 
+
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Only allow movement along the non-zero axis
+        if (currentSceneName == "MainMenu")
+        {
+            moveSpeed = 0;
+        } 
+        else {
+            moveSpeed = 5f + (speedLevel * 0.4f); 
+        }
     }
 
     // Update is called once per frame
@@ -38,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerHealth playerHealth = activePlayer.GetComponent<PlayerHealth>();
         playerIsAlive = playerHealth.GetPlayerIsAlive();
         if (playerIsAlive)
-        {
+        {   
             // Use Physics2D.MovePosition to move the player and handle collisions
             Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
             rb.MovePosition(newPosition);

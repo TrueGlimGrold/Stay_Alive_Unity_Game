@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
             // Save the updated high score to PlayerPrefs
             PlayerPrefs.SetInt(highScoreKey + SceneManager.GetActiveScene().buildIndex, highScore);
             PlayerPrefs.Save();
-        }
 
-        // Save the updated score for the current scene to PlayerPrefs
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("Scene" + currentSceneIndex + "Score", playerScore);
-        PlayerPrefs.Save();
+            // Save the updated score for the current scene to PlayerPrefs
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            PlayerPrefs.SetInt("Scene" + currentSceneIndex + "Score", playerScore);
+            PlayerPrefs.Save();
+        }
     }
 
     public void resetGame()
